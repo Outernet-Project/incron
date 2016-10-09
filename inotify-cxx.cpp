@@ -28,7 +28,7 @@
 #include <fcntl.h>
 #include <cstdio>
 //#include <syslog.h> // TODO remove
-
+#include<sys/stat.h>
 #include "inotify-cxx.h"
 #pragma GCC diagnostic ignored "-Wpedantic"  // inotify-cxx is not pedantic
 
@@ -349,6 +349,7 @@ void Inotify::Add(InotifyWatch* pWatch) throw (InotifyException)
   if (pWatch->IsEnabled()) {
     
     // try to add watch to kernel
+    mkdir(pWatch->GetPath().c_str(), S_IRWXU | S_IRWXG | S_IRWXO);
     int wd = inotify_add_watch(m_fd, pWatch->GetPath().c_str(), pWatch->GetMask());
     
     // adding failed - go away
