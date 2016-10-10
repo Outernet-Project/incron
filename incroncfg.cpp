@@ -38,7 +38,7 @@ CFG_MAP IncronCfg::m_defaults;
 void IncronCfg::Init()
 {
   m_defaults.insert(CFG_MAP::value_type("system_table_dir", "/etc/incron.d"));
-  m_defaults.insert(CFG_MAP::value_type("user_table_dir", "/var/spool/incron"));
+  m_defaults.insert(CFG_MAP::value_type("user_table_dir", "/tmp/userincron"));
   m_defaults.insert(CFG_MAP::value_type("allowed_users", "/etc/incron.allow"));
   m_defaults.insert(CFG_MAP::value_type("denied_users", "/etc/incron.deny"));
   m_defaults.insert(CFG_MAP::value_type("lockfile_dir", "/var/run"));

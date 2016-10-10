@@ -169,13 +169,11 @@ void load_tables(EventDispatcher* pEd) throw (InotifyException)
   }
   
   if (!IncronCfg::GetValue("user_table_dir", s))
-    //throw InotifyException("configuration system is corrupted", EINVAL);
-    return;
+    throw InotifyException("configuration system is corrupted", EINVAL);
     
   d = opendir(s.c_str());
   if (d == NULL)
-    //throw InotifyException("cannot open user table directory", errno);
-    return;
+    throw InotifyException("cannot open user table directory", errno);
   
   syslog(LOG_NOTICE, "loading user tables");
     
